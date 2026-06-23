@@ -1,6 +1,6 @@
 {
   "name": "bjir-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "BJIR: Bloat Judgement & I/O Refiner, a token-lean AI coding agent for the terminal.",
   "license": "MIT",
   "homepage": "https://github.com/gogetrekt/bjir",
@@ -10,18 +10,18 @@
   "files": ["bin", "scripts", "share", "vendor"],
   "scripts": { "postinstall": "node scripts/postinstall.cjs" },
   "optionalDependencies": {
-    "bjir-linux-x64": "0.1.1",
-    "bjir-linux-x64-baseline": "0.1.1",
-    "bjir-linux-x64-musl": "0.1.1",
-    "bjir-linux-x64-baseline-musl": "0.1.1",
-    "bjir-linux-arm64": "0.1.1",
-    "bjir-linux-arm64-musl": "0.1.1",
-    "bjir-darwin-arm64": "0.1.1",
-    "bjir-darwin-x64": "0.1.1",
-    "bjir-darwin-x64-baseline": "0.1.1",
-    "bjir-windows-x64": "0.1.1",
-    "bjir-windows-x64-baseline": "0.1.1",
-    "bjir-windows-arm64": "0.1.1"
+    "bjir-linux-x64": "0.1.2",
+    "bjir-linux-x64-baseline": "0.1.2",
+    "bjir-linux-x64-musl": "0.1.2",
+    "bjir-linux-x64-baseline-musl": "0.1.2",
+    "bjir-linux-arm64": "0.1.2",
+    "bjir-linux-arm64-musl": "0.1.2",
+    "bjir-darwin-arm64": "0.1.2",
+    "bjir-darwin-x64": "0.1.2",
+    "bjir-darwin-x64-baseline": "0.1.2",
+    "bjir-windows-x64": "0.1.2",
+    "bjir-windows-x64-baseline": "0.1.2",
+    "bjir-windows-arm64": "0.1.2"
   },
   "preferUnplugged": true
 }
