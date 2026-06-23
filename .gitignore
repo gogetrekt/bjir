@@ -1,0 +1,47 @@
+.DS_Store
+node_modules
+.worktrees
+.sst
+.env
+.env.local
+.idea
+.vscode
+.codex
+*~
+playground
+tmp
+dist
+ts-dist
+.turbo
+**/.serena
+.serena/
+**/.omo
+.omo/
+/result
+refs
+Session.vim
+/opencode.json
+a.out
+target
+.scripts
+.direnv/
+
+# Local dev files
+opencode-dev
+UPCOMING_CHANGELOG.md
+logs/
+*.bun-build
+tsconfig.tsbuildinfo
+
+# BJiR development/internal docs — not published (kept local only)
+PLAN.md
+CLAUDE.md
+AGENTS.md
+CONTEXT.md
+STATS.md
+docs/
+specs/
+perf/test-suite.md
+
+# stray local rtk extraction (canonical copy lives in packages/bjir/vendor)
+/bjir/
