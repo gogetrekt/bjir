@@ -9,17 +9,16 @@ import { BjirSavings } from "@opencode-ai/core/bjir/savings"
  */
 export function TokenSavings() {
   const { theme } = useTheme()
-  const [saved, setSaved] = createSignal(0)
+  const initial = (() => { try { return BjirSavings.grandTotal() } catch { return 0 } })()
+  const [saved, setSaved] = createSignal(initial)
 
   onMount(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
     const tick = () => {
-      try {
-        setSaved(BjirSavings.read().totalSaved)
-      } catch {}
+      try { setSaved(BjirSavings.grandTotal()) } catch {}
       timer = setTimeout(tick, 5000)
     }
-    tick()
+    timer = setTimeout(tick, 5000)
     onCleanup(() => timer && clearTimeout(timer))
   })
 
