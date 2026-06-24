@@ -1,4 +1,8 @@
-<h1 align="center">BJIR</h1>
+<div align="center">
+  <a href="https://bjir.tech">
+    <img src="https://i.ibb.co/XfgnW2BK/bjir-logo.png" alt="BJIR" width="200">
+  </a>
+</div>
 
 <p align="center">A token-lean AI coding agent for the terminal.</p>
 
