@@ -10,16 +10,14 @@ import { existsSync } from "node:fs"
 import { homedir } from "node:os"
 import path from "node:path"
 
-// Commands whose output is worth compressing.
-const SUPPORTED = new Set([
-  "git", "cargo", "npm", "pnpm", "yarn", "bun",
-  "docker", "kubectl", "make",
-  "pytest", "ruff", "eslint", "tsc",
-  "go", "python", "pip",
+// Never wrap these: interactive, streaming, or produces no useful output to compress.
+const DEFAULT_EXCLUDE = new Set([
+  "cat", "echo", "printf", "less", "more", "tail", "head",
+  "watch", "vim", "nano", "vi", "emacs", "top", "htop", "btop",
+  "ssh", "telnet", "nc", "ftp", "sftp",
+  "bash", "sh", "zsh", "fish",
+  "sudo", "su", "doas",
 ])
-
-// Never wrap these: cheap/quiet, interactive, or long-running/streaming.
-const DEFAULT_EXCLUDE = new Set(["cat", "diff", "echo", "curl", "wget", "tail", "less", "watch", "vim", "nano", "top", "htop"])
 
 let cached: string | null | undefined
 
@@ -53,8 +51,7 @@ export function wrap(command: string): string {
     if (!trimmed) return command
     const first = path.basename(trimmed.split(/\s+/)[0] ?? "")
     if (first === "rtk") return command // already wrapped
-    if (!SUPPORTED.has(first)) return command
-    if (excluded().has(first)) return command
+        if (excluded().has(first)) return command
     const bin = detect()
     if (!bin) return command
     return `${bin} ${command}`

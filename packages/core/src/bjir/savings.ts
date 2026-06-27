@@ -86,7 +86,7 @@ function readRtk(ttlMs = 15000): RtkGain | null {
           commands: s.total_commands ?? 0,
           input: s.total_input ?? 0,
           output: s.total_output ?? 0,
-          saved: s.total_saved ?? 0,
+          saved: Math.round((s.total_saved ?? 0) / 4),
           pct: s.avg_savings_pct ?? 0,
         }
       }
@@ -135,7 +135,7 @@ function rows(s: Savings): Row[] {
   if (s.response.calls > 0)
     out.push({ label: "caveman (responses)", ops: s.response.calls, saved: s.response.savedEst, pct: "~65%" })
   if (s.rtk && s.rtk.commands > 0)
-    out.push({ label: "rtk (shell)", ops: s.rtk.commands, saved: s.rtk.saved, pct: `${Math.round(s.rtk.pct)}%` })
+    out.push({ label: "rtk (shell)", ops: s.rtk.commands, saved: s.rtk.saved, pct: `${s.rtk.pct.toFixed(1)}%` })
   return out.filter((r) => r.saved > 0 || r.ops > 0).sort((a, b) => b.saved - a.saved)
 }
 

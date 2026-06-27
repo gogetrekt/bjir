@@ -17,7 +17,14 @@ import { BjirProfile } from "./profile"
  * lite/standard/ultra reducer onto caveman's lite/full/ultra intensity table.
  */
 
-const PONYTAIL = `## Code minimalism (ponytail — Bloat Judgement)
+// ponytail LITE — YAGNI check only; no detailed ladder enforcement.
+const PONYTAIL_LITE = `## Code minimalism (ponytail — lite)
+
+Before writing code: does this need to exist? Skip if not. Use stdlib/native/existing dep before new code.
+Shortest working diff wins. No boilerplate, no scaffolding for later.`
+
+// ponytail STANDARD (default) — full 6-rung ladder + simplification marking.
+const PONYTAIL_STANDARD = `## Code minimalism (ponytail — Bloat Judgement)
 
 Before writing ANY code, stop at the first rung that works:
 1. Does this need to exist? -> No: skip it (YAGNI)
@@ -31,6 +38,23 @@ No unrequested abstractions. Deletion over addition. Boring over clever. Fewest 
 If prose outweighs code, delete the prose.
 NEVER cut: input validation at trust boundaries, error handling that prevents data loss, security, accessibility, anything the user explicitly requested.
 Mark deliberate simplifications with a \`ponytail:\` comment naming the ceiling + upgrade path.`
+
+// ponytail ULTRA — maximum deletion; every symbol must be justified.
+const PONYTAIL_ULTRA = `## Code minimalism (ponytail — ultra)
+
+Every function, class, file, and abstraction must be justified by present, concrete use. Justify it or delete it.
+Ladder (stop at first rung that works): YAGNI -> stdlib -> native -> existing dep -> one line -> minimum code.
+Default action is DELETION. New file only when modification is impossible. New abstraction only with 3+ callers.
+No boilerplate, no scaffolding, no config for a value that never changes, no interface with one impl.
+Three similar lines beats a premature abstraction. Complex request: ship lazy version, question it.
+NEVER cut: trust-boundary validation, data-loss error handling, security, accessibility, explicit user request.
+Mark shortcuts: \`// ponytail: <ceiling> — upgrade when <condition>\`.`
+
+const PONYTAIL_BY_LEVEL: Record<ReducerLevel, string> = {
+  lite: PONYTAIL_LITE,
+  standard: PONYTAIL_STANDARD,
+  ultra: PONYTAIL_ULTRA,
+}
 
 // caveman LITE — drop only filler/hedging; keep articles + full sentences.
 const CAVEMAN_LITE = `## Response style (caveman — lite)
@@ -79,7 +103,7 @@ export function level(value?: string | null): ReducerLevel {
  * caveman intensity for that level. `standard` -> caveman full (startup default).
  */
 export function rules(reducer: ReducerLevel = "standard"): string {
-  return [PONYTAIL, CAVEMAN_BY_LEVEL[reducer]].join("\n\n")
+  return [PONYTAIL_BY_LEVEL[reducer], CAVEMAN_BY_LEVEL[reducer]].join("\n\n")
 }
 
 /** Back-compat: the default (standard) rule bundle. */
