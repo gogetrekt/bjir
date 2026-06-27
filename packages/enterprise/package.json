@@ -32,9 +32,10 @@
   "devDependencies": {
     "@cloudflare/workers-types": "catalog:",
     "@tailwindcss/vite": "catalog:",
-    "@typescript/native-preview": "catalog:",
     "@types/bun": "catalog:",
     "@types/luxon": "catalog:",
+    "@typescript/native-preview": "catalog:",
+    "shiki": "4.2.0",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:"
